@@ -1,0 +1,399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D735A773213210E700A04ABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A772213210E700A04ABB /* AppDelegate.swift */; };
+		D735A77A213210E900A04ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D735A779213210E900A04ABB /* Assets.xcassets */; };
+		D735A77D213210E900A04ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D735A77B213210E900A04ABB /* LaunchScreen.storyboard */; };
+		D735A78B213211BB00A04ABB /* AlarmsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A78A213211BB00A04ABB /* AlarmsListTableViewController.swift */; };
+		D735A78D2132124600A04ABB /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A78C2132124600A04ABB /* AlarmController.swift */; };
+		D735A78F2132127100A04ABB /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A78E2132127100A04ABB /* Alarm.swift */; };
+		D735A7912132177A00A04ABB /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A7902132177A00A04ABB /* SwitchTableViewCell.swift */; };
+		D735A7952132FA9E00A04ABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D735A7942132FA9E00A04ABB /* Main.storyboard */; };
+		D735A79A21338CB100A04ABB /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A79921338CB100A04ABB /* DataHelper.swift */; };
+		D735A79C21338FE600A04ABB /* AlarmDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A79B21338FE600A04ABB /* AlarmDetailTableViewController.swift */; };
+		D757B10A2134415100145084 /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D757B1092134415100145084 /* Persistable.swift */; };
+		D757B10C2134435700145084 /* CRUDable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D757B10B2134435700145084 /* CRUDable.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D735A76F213210E700A04ABB /* Alarm_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alarm_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D735A772213210E700A04ABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D735A779213210E900A04ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D735A77C213210E900A04ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D735A77E213210E900A04ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D735A78A213211BB00A04ABB /* AlarmsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsListTableViewController.swift; sourceTree = "<group>"; };
+		D735A78C2132124600A04ABB /* AlarmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
+		D735A78E2132127100A04ABB /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		D735A7902132177A00A04ABB /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		D735A7942132FA9E00A04ABB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D735A79921338CB100A04ABB /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		D735A79B21338FE600A04ABB /* AlarmDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailTableViewController.swift; sourceTree = "<group>"; };
+		D757B1092134415100145084 /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		D757B10B2134435700145084 /* CRUDable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDable.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D735A76C213210E700A04ABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D735A766213210E700A04ABB = {
+			isa = PBXGroup;
+			children = (
+				D735A771213210E700A04ABB /* Alarm_2 */,
+				D735A770213210E700A04ABB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D735A770213210E700A04ABB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D735A76F213210E700A04ABB /* Alarm_2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D735A771213210E700A04ABB /* Alarm_2 */ = {
+			isa = PBXGroup;
+			children = (
+				D735A772213210E700A04ABB /* AppDelegate.swift */,
+				D735A7942132FA9E00A04ABB /* Main.storyboard */,
+				D757B1082134414200145084 /* Protocols */,
+				D735A7872132112E00A04ABB /* ViewController */,
+				D735A7862132112900A04ABB /* Controller */,
+				D735A7852132112200A04ABB /* View */,
+				D735A7842132111400A04ABB /* Model */,
+				D735A779213210E900A04ABB /* Assets.xcassets */,
+				D735A77B213210E900A04ABB /* LaunchScreen.storyboard */,
+				D735A77E213210E900A04ABB /* Info.plist */,
+			);
+			path = Alarm_2;
+			sourceTree = "<group>";
+		};
+		D735A7842132111400A04ABB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D735A78E2132127100A04ABB /* Alarm.swift */,
+				D735A79921338CB100A04ABB /* DataHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D735A7852132112200A04ABB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D735A7902132177A00A04ABB /* SwitchTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D735A7862132112900A04ABB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D735A78C2132124600A04ABB /* AlarmController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D735A7872132112E00A04ABB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D735A78A213211BB00A04ABB /* AlarmsListTableViewController.swift */,
+				D735A79B21338FE600A04ABB /* AlarmDetailTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D757B1082134414200145084 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D757B1092134415100145084 /* Persistable.swift */,
+				D757B10B2134435700145084 /* CRUDable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D735A76E213210E700A04ABB /* Alarm_2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D735A781213210E900A04ABB /* Build configuration list for PBXNativeTarget "Alarm_2" */;
+			buildPhases = (
+				D735A76B213210E700A04ABB /* Sources */,
+				D735A76C213210E700A04ABB /* Frameworks */,
+				D735A76D213210E700A04ABB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alarm_2;
+			productName = Alarm_2;
+			productReference = D735A76F213210E700A04ABB /* Alarm_2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D735A767213210E700A04ABB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Jason Goodney";
+				TargetAttributes = {
+					D735A76E213210E700A04ABB = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = D735A76A213210E700A04ABB /* Build configuration list for PBXProject "Alarm_2" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D735A766213210E700A04ABB;
+			productRefGroup = D735A770213210E700A04ABB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D735A76E213210E700A04ABB /* Alarm_2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D735A76D213210E700A04ABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D735A7952132FA9E00A04ABB /* Main.storyboard in Resources */,
+				D735A77D213210E900A04ABB /* LaunchScreen.storyboard in Resources */,
+				D735A77A213210E900A04ABB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D735A76B213210E700A04ABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D735A78B213211BB00A04ABB /* AlarmsListTableViewController.swift in Sources */,
+				D757B10C2134435700145084 /* CRUDable.swift in Sources */,
+				D735A773213210E700A04ABB /* AppDelegate.swift in Sources */,
+				D757B10A2134415100145084 /* Persistable.swift in Sources */,
+				D735A7912132177A00A04ABB /* SwitchTableViewCell.swift in Sources */,
+				D735A79C21338FE600A04ABB /* AlarmDetailTableViewController.swift in Sources */,
+				D735A78D2132124600A04ABB /* AlarmController.swift in Sources */,
+				D735A78F2132127100A04ABB /* Alarm.swift in Sources */,
+				D735A79A21338CB100A04ABB /* DataHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D735A77B213210E900A04ABB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D735A77C213210E900A04ABB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D735A77F213210E900A04ABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D735A780213210E900A04ABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D735A782213210E900A04ABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2R548H5LT;
+				INFOPLIST_FILE = Alarm_2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasongoodney.Alarm-2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D735A783213210E900A04ABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2R548H5LT;
+				INFOPLIST_FILE = Alarm_2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasongoodney.Alarm-2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D735A76A213210E700A04ABB /* Build configuration list for PBXProject "Alarm_2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D735A77F213210E900A04ABB /* Debug */,
+				D735A780213210E900A04ABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D735A781213210E900A04ABB /* Build configuration list for PBXNativeTarget "Alarm_2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D735A782213210E900A04ABB /* Debug */,
+				D735A783213210E900A04ABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D735A767213210E700A04ABB /* Project object */;
+}
