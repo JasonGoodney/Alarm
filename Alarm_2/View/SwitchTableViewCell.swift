@@ -42,26 +42,6 @@ class SwitchTableViewCell: UITableViewCell {
             delegate.switchCellSwitchValueChanged(cell: self)
         }
     }
-    
-    
+        
 }
 
-
-
-//var nameLabel: UILabel = {
-//    let label = UILabel()
-//    label.text = "Alarm"
-//    return label
-//}()
-//
-//var timeLabel: UILabel = {
-//    let label = UILabel()
-//    label.text = "6:00 PM"
-//    return label
-//}()
-//
-//var alarmSwitch: UISwitch = {
-//    let alarmSwitch = UISwitch()
-//    alarmSwitch.addTarget(self, action: #selector(switchValueChanged), for: .touchUpInside)
-//    return alarmSwitch
-//}()

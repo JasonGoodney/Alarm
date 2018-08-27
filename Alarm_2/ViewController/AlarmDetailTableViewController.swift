@@ -8,12 +8,17 @@
 
 import UIKit
 
-class AlarmDetailTableViewController: UITableViewController {
+class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
 
     private let segueIdentifier = "ToEditName"
-    var alarm: Alarm?
+    var alarm: Alarm? {
+        didSet {
+            if isViewLoaded { updateView() }
+        }
+    }
     let newAlarmSectionCount = 2
     let updateAlarmSectionCount = 4
+    let deleteCellSection = 3
     
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var nameTextField: UITextField!
@@ -21,14 +26,7 @@ class AlarmDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateView()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        AlarmController.shared.saveToPersistance()
     }
     
     private func updateView() {
@@ -37,6 +35,7 @@ class AlarmDetailTableViewController: UITableViewController {
         nameTextField.text = alarm.name
         enableSwitch.isOn = alarm.enabled
         
+        navigationItem.title = alarm.name
         
     }
     
@@ -47,16 +46,32 @@ class AlarmDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == deleteCellSection {
+            guard let alarm = alarm else { return }
+            AlarmController.shared.delete(alarm)
+            cancelUserNotifications(for: alarm)
+            navigationController?.popViewController(animated: true)
+        }
+    }
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let date = timePicker.date
-        guard let fireTimeFromMidnight = DateHelper.thisMorningAtMidnight?.timeIntervalSince(date),
+        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight,
             let name = nameTextField.text, !name.isEmpty else { return }
         
+        let timeSinceMidnight = date.timeIntervalSince(thisMorningAtMidnight)
+        
         if let alarm = alarm {
-            AlarmController.shared.update(alarm, with: name, fireTimeFromMidnight)
+            AlarmController.shared.update(alarm, with: name, timeSinceMidnight)
+            cancelUserNotifications(for: alarm)
+            scheduleUserNotifications(for: alarm)
         } else {
-            AlarmController.shared.createAlarm(with: name, fireTimeFromMidnight)
+            self.alarm = AlarmController.shared.createAlarm(with: name, timeSinceMidnight)
+            if let alarm = alarm {
+                scheduleUserNotifications(for: alarm)
+            }
         }
         
         navigationController?.popViewController(animated: true)
@@ -65,16 +80,16 @@ class AlarmDetailTableViewController: UITableViewController {
     @IBAction func enableButtonTapped(_ sender: UISwitch) {
         if let alarm = alarm {
             alarm.enabled = sender.isOn
+            
+            switch alarm.enabled {
+            case true:
+                scheduleUserNotifications(for: alarm)
+            default:
+                cancelUserNotifications(for: alarm)
+                
+            }
+            AlarmController.shared.toggleEnabled(for: alarm)
         }
     }
     
-    
-}
-
-
-extension AlarmDetailTableViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
 }

@@ -8,9 +8,7 @@
 
 import UIKit
 
-typealias TableViewable = UITableViewDataSource & UITableViewDelegate
-
-class AlarmsListTableViewController: UITableViewController {
+class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
     
     let rowHeight: CGFloat = 88
     let cellSegueIdentifier = "ToUpdateDetail"
@@ -36,39 +34,6 @@ class AlarmsListTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
     }
-
-    // MARK: - Actions
-    @IBAction func editToggle(_ sender: UIBarButtonItem) {
-        tableView.setEditing(!tableView.isEditing, animated: true)
-        
-        if tableView.isEditing {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editToggle(_:)))
-            hideSwitch()
-            
-            
-        } else {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editToggle(_:)))
-            showSwitch()
-        }
-    }
-    
-    func hideSwitch() {
-        guard let cells = tableView.visibleCells as? [SwitchTableViewCell] else { return }
-        
-        for cell in cells {
-            cell.alarmSwitch.isHidden = true
-            cell.accessoryType = .disclosureIndicator
-        }
-    }
-    
-    func showSwitch() {
-        guard let cells = tableView.visibleCells as? [SwitchTableViewCell] else { return }
-        
-        for cell in cells {
-            cell.alarmSwitch.isHidden = false
-            cell.accessoryType = .none
-        }
-    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,9 +42,11 @@ class AlarmsListTableViewController: UITableViewController {
                   let index = tableView.indexPathForSelectedRow?.row else { return }
             
             destinationVC.alarm = alarms[index]
+
         }
     }
     
+    // MARK: UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alarms.count
     }
@@ -87,16 +54,18 @@ class AlarmsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.cellId, for: indexPath) as? SwitchTableViewCell else { return UITableViewCell() }
         
-        cell.alarm = alarms[indexPath.row]
         cell.delegate = self
+        cell.alarm = alarms[indexPath.row]
         
         return cell
     }
     
+    // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alarm = alarms[indexPath.row]
             AlarmController.shared.delete(alarm)
+            cancelUserNotifications(for: alarm)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -109,9 +78,18 @@ class AlarmsListTableViewController: UITableViewController {
 
 extension AlarmsListTableViewController: SwitchTableViewCellDelegate {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
-        guard let alarm = cell.alarm else { return }
+        guard let index = tableView.indexPath(for: cell)?.row else { return }
+        let alarm = alarms[index]
         
         AlarmController.shared.toggleEnabled(for: alarm)
+        
+        switch alarm.enabled {
+        case true:
+            scheduleUserNotifications(for: alarm)
+        default:
+            cancelUserNotifications(for: alarm)
+        }
+        
     }
 }
 

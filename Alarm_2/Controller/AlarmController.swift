@@ -7,6 +7,41 @@
 //
 
 import Foundation
+import UserNotifications
+
+protocol AlarmScheduler {
+    func scheduleUserNotifications(for alarm: Alarm)
+    func cancelUserNotifications(for alarm: Alarm)
+}
+
+extension AlarmScheduler {
+    func scheduleUserNotifications(for alarm: Alarm) {
+        print("Scheduling alarm")
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: "⏰", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: alarm.name, arguments: nil)
+        content.sound = UNNotificationSound.default()
+        
+        
+        guard let fireDate = alarm.fireDate else { return }
+        let triggerDate = Calendar.current.dateComponents([.hour, .minute, .second], from: fireDate)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
+        let request = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+        center.add(request) { (error) in
+            if let error = error {
+                print("Error adding notification \(error)\n\(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func cancelUserNotifications(for alarm: Alarm) {
+        print("Canceling alarm")
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [alarm.uuid])
+    }
+}
 
 class AlarmController {
     
@@ -20,11 +55,13 @@ class AlarmController {
         alarm.enabled = !alarm.enabled
     }
     
-    func createAlarm(with name: String, _ fireTimeFromMidnight: TimeInterval) {
+    func createAlarm(with name: String, _ fireTimeFromMidnight: TimeInterval) -> Alarm {
         let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
         alarms.append(alarm)
         
         saveToPersistance()
+        
+        return alarm
     }
     
     func update(_ alarm: Alarm, with name: String, _ fireTimeFromMidnight: TimeInterval) {
