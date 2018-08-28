@@ -28,34 +28,22 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
         super.viewDidLoad()
         updateView()
     }
-    
+}
+
+// MARK: - Methods
+extension AlarmDetailTableViewController {
     private func updateView() {
         guard let alarm = alarm, let fireDate = alarm.fireDate else { return }
         timePicker.setDate(fireDate, animated: false)
         nameTextField.text = alarm.name
         enableSwitch.isOn = alarm.enabled
         
-        navigationItem.title = alarm.name
-        
+        navigationItem.title = alarm.name        
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return alarm != nil ? updateAlarmSectionCount : newAlarmSectionCount
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == deleteCellSection {
-            guard let alarm = alarm else { return }
-            AlarmController.shared.delete(alarm)
-            cancelUserNotifications(for: alarm)
-            navigationController?.popViewController(animated: true)
-        }
-    }
+}
 
+// MARK: - Actions
+extension AlarmDetailTableViewController {
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let date = timePicker.date
         guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight,
@@ -91,5 +79,25 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
             AlarmController.shared.toggleEnabled(for: alarm)
         }
     }
-    
 }
+
+// MARK: - UITableViewDataSource
+extension AlarmDetailTableViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return alarm != nil ? updateAlarmSectionCount : newAlarmSectionCount
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == deleteCellSection {
+            guard let alarm = alarm else { return }
+            AlarmController.shared.delete(alarm)
+            cancelUserNotifications(for: alarm)
+            navigationController?.popViewController(animated: true)
+        }
+    }
+}
+
