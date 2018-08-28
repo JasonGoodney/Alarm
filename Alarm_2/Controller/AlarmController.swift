@@ -15,30 +15,7 @@ class AlarmController: AlarmScheduler {
     private init() {}
 
     var alarms: [Alarm] = []
-    
-//    func createAlarm(firingAt fireDate: Date, withName name: String) -> Alarm {
-//        let alarm = Alarm(fireDate: fireDate, name: name)
-//        alarms.append(alarm)
-//        
-//        saveToPersistance()
-//        
-//        return alarm
-//    }
-//    
-//    func update(_ alarm: Alarm, firingAt fireDate: Date, withName name: String) {
-//        alarm.name = name
-//        alarm.fireDate = fireDate
-//        
-//        saveToPersistance()
-//    }
-//    
-//    func delete(_ alarm: Alarm) {
-//        if let index = alarms.index(of: alarm) {
-//            alarms.remove(at: index)
-//            
-//            saveToPersistance()
-//        }
-//    }
+
 }
 
 // MARK: - Methods
@@ -94,10 +71,6 @@ extension AlarmController: CRUDable {
             saveToPersistance()
         }
     }
-    
-    
-    
-    
 }
 
 // MARK: - Persistable

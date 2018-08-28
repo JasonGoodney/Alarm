@@ -16,7 +16,7 @@ protocol AlarmScheduler {
 
 extension AlarmScheduler {
     func scheduleUserNotifications(for alarm: Alarm) {
-        print("Scheduling alarm")
+    
         let content = UNMutableNotificationContent()
         content.title = NSString.localizedUserNotificationString(forKey: "⏰", arguments: nil)
         content.body = NSString.localizedUserNotificationString(forKey: alarm.name, arguments: nil)
@@ -35,7 +35,7 @@ extension AlarmScheduler {
     }
     
     func cancelUserNotifications(for alarm: Alarm) {
-        print("Canceling alarm")
+    
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [alarm.uuid])
     }
 }

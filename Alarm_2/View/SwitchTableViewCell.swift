@@ -44,7 +44,7 @@ private extension SwitchTableViewCell {
 // MARK: - Methods
 private extension SwitchTableViewCell {
     @IBAction func switchValueChanged(_ sender: UISwitch) {
-        print("\n switchAlarm.isOn \(sender.isOn)")
+        
         if let delegate = delegate {
             delegate.switchCellSwitchValueChanged(cell: self)
         }

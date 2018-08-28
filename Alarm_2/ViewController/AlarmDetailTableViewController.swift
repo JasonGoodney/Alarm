@@ -10,6 +10,7 @@ import UIKit
 
 class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
 
+    // MARK: - Properties
     private let segueIdentifier = "ToEditName"
     var alarm: Alarm? {
         didSet {
@@ -20,6 +21,7 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
     private let updateAlarmSectionCount = 4
     private let deleteCellSection = 3
     
+    // MARK: - Outlets
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var enableSwitch: UISwitch!
@@ -52,14 +54,12 @@ private extension AlarmDetailTableViewController {
         guard let name = nameTextField.text, !name.isEmpty else { return }
         
         if let alarm = alarm {
-            //AlarmController.shared.update(alarm, firingAt: fireDate, withName: name)
             let alarmDictionary: [String : Any] = [AlarmKey.name : name, AlarmKey.fireDate : fireDate, AlarmKey.enabled : enabled]
             AlarmController.shared.update(alarm, dictionary: alarmDictionary)
             
         } else {
             let alarmDictionary: [String : Any] = [AlarmKey.name : name, AlarmKey.fireDate : fireDate]
             self.alarm = AlarmController.shared.create(dictionary: alarmDictionary)
-            
         }
         
         navigationController?.popViewController(animated: true)

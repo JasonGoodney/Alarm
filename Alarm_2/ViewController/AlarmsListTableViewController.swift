@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
+class AlarmsListTableViewController: UITableViewController {
     
     // MARK: - Properties
     let rowHeight: CGFloat = 88
@@ -66,7 +66,6 @@ extension AlarmsListTableViewController {
         if editingStyle == .delete {
             let alarm = alarms[indexPath.row]
             AlarmController.shared.delete(alarm)
-            cancelUserNotifications(for: alarm)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -82,15 +81,7 @@ extension AlarmsListTableViewController: SwitchTableViewCellDelegate {
         guard let index = tableView.indexPath(for: cell)?.row else { return }
         let alarm = alarms[index]
         
-        AlarmController.shared.toggleEnabled(for: alarm)
-        
-        switch alarm.enabled {
-        case true:
-            scheduleUserNotifications(for: alarm)
-        default:
-            cancelUserNotifications(for: alarm)
-        }
-        
+        AlarmController.shared.toggleEnabled(for: alarm)        
     }
 }
 
