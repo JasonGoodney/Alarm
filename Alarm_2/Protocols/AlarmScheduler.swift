@@ -22,7 +22,7 @@ extension AlarmScheduler {
         content.body = NSString.localizedUserNotificationString(forKey: alarm.name, arguments: nil)
         content.sound = UNNotificationSound.default()
         
-        let triggerDate = Calendar.current.dateComponents([.minute, .second], from: alarm.fireDate)
+        let triggerDate = Calendar.current.dateComponents([.hour, .minute], from: alarm.fireDate)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
         let request = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
