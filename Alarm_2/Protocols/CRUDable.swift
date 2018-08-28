@@ -9,8 +9,11 @@
 import Foundation
 
 protocol CRUDable {
-    func create()
-    func update()
-    func delete()
+    
+    associatedtype Item
+    
+    func create(dictionary: [String : Any]) -> Item
+    func update(_ item: Item, dictionary: [String : Any?])
+    func delete(_ item: Item)
     
 }

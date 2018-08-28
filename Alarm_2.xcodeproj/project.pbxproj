@@ -15,10 +15,11 @@
 		D735A78F2132127100A04ABB /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A78E2132127100A04ABB /* Alarm.swift */; };
 		D735A7912132177A00A04ABB /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A7902132177A00A04ABB /* SwitchTableViewCell.swift */; };
 		D735A7952132FA9E00A04ABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D735A7942132FA9E00A04ABB /* Main.storyboard */; };
-		D735A79A21338CB100A04ABB /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A79921338CB100A04ABB /* DataHelper.swift */; };
 		D735A79C21338FE600A04ABB /* AlarmDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735A79B21338FE600A04ABB /* AlarmDetailTableViewController.swift */; };
 		D757B10A2134415100145084 /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D757B1092134415100145084 /* Persistable.swift */; };
 		D757B10C2134435700145084 /* CRUDable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D757B10B2134435700145084 /* CRUDable.swift */; };
+		D7A56F412135F93400D55D66 /* AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A56F402135F93400D55D66 /* AlarmScheduler.swift */; };
+		D7A56F432135FB7700D55D66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A56F422135FB7700D55D66 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +33,11 @@
 		D735A78E2132127100A04ABB /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		D735A7902132177A00A04ABB /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		D735A7942132FA9E00A04ABB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D735A79921338CB100A04ABB /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		D735A79B21338FE600A04ABB /* AlarmDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailTableViewController.swift; sourceTree = "<group>"; };
 		D757B1092134415100145084 /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
 		D757B10B2134435700145084 /* CRUDable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDable.swift; sourceTree = "<group>"; };
+		D7A56F402135F93400D55D66 /* AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmScheduler.swift; sourceTree = "<group>"; };
+		D7A56F422135FB7700D55D66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				D735A772213210E700A04ABB /* AppDelegate.swift */,
 				D735A7942132FA9E00A04ABB /* Main.storyboard */,
+				D7A56F422135FB7700D55D66 /* Constants.swift */,
 				D757B1082134414200145084 /* Protocols */,
 				D735A7872132112E00A04ABB /* ViewController */,
 				D735A7862132112900A04ABB /* Controller */,
@@ -86,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				D735A78E2132127100A04ABB /* Alarm.swift */,
-				D735A79921338CB100A04ABB /* DataHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,6 +121,7 @@
 		D757B1082134414200145084 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D7A56F402135F93400D55D66 /* AlarmScheduler.swift */,
 				D757B1092134415100145084 /* Persistable.swift */,
 				D757B10B2134435700145084 /* CRUDable.swift */,
 			);
@@ -201,10 +204,11 @@
 				D735A773213210E700A04ABB /* AppDelegate.swift in Sources */,
 				D757B10A2134415100145084 /* Persistable.swift in Sources */,
 				D735A7912132177A00A04ABB /* SwitchTableViewCell.swift in Sources */,
+				D7A56F432135FB7700D55D66 /* Constants.swift in Sources */,
+				D7A56F412135F93400D55D66 /* AlarmScheduler.swift in Sources */,
 				D735A79C21338FE600A04ABB /* AlarmDetailTableViewController.swift in Sources */,
 				D735A78D2132124600A04ABB /* AlarmController.swift in Sources */,
 				D735A78F2132127100A04ABB /* Alarm.swift in Sources */,
-				D735A79A21338CB100A04ABB /* DataHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@ import UIKit
 
 class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
     
+    // MARK: - Properties
     let rowHeight: CGFloat = 88
     let cellSegueIdentifier = "ToUpdateDetail"
     
@@ -20,7 +21,7 @@ class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
+        updateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,25 +29,23 @@ class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
         
         tableView.reloadData()
     }
+}
+
+// MARK: - Update View
+extension AlarmsListTableViewController {
+    func updateView() {
+        setupTableView()
+    }
     
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
     }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == cellSegueIdentifier {
-            guard let destinationVC = segue.destination as? AlarmDetailTableViewController,
-                  let index = tableView.indexPathForSelectedRow?.row else { return }
-            
-            destinationVC.alarm = alarms[index]
+}
 
-        }
-    }
-    
-    // MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
+extension AlarmsListTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alarms.count
     }
@@ -59,8 +58,10 @@ class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
         
         return cell
     }
-    
-    // MARK: - UITableViewDelegate
+}
+
+// MARK: - UITableViewDelegate
+extension AlarmsListTableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alarm = alarms[indexPath.row]
@@ -73,9 +74,9 @@ class AlarmsListTableViewController: UITableViewController, AlarmScheduler {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return rowHeight
     }
-    
 }
 
+// MARK: SwitchTableViewCellDelegate
 extension AlarmsListTableViewController: SwitchTableViewCellDelegate {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
         guard let index = tableView.indexPath(for: cell)?.row else { return }
@@ -93,4 +94,15 @@ extension AlarmsListTableViewController: SwitchTableViewCellDelegate {
     }
 }
 
-
+// MARK: - Navigation
+extension AlarmsListTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == cellSegueIdentifier {
+            guard let destinationVC = segue.destination as? AlarmDetailTableViewController,
+                let index = tableView.indexPathForSelectedRow?.row else { return }
+            
+            destinationVC.alarm = alarms[index]
+            
+        }
+    }
+}

@@ -16,9 +16,9 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
             if isViewLoaded { updateView() }
         }
     }
-    let newAlarmSectionCount = 2
-    let updateAlarmSectionCount = 4
-    let deleteCellSection = 3
+    private let newAlarmSectionCount = 2
+    private let updateAlarmSectionCount = 4
+    private let deleteCellSection = 3
     
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var nameTextField: UITextField!
@@ -31,10 +31,11 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
 }
 
 // MARK: - Methods
-extension AlarmDetailTableViewController {
+private extension AlarmDetailTableViewController {
     private func updateView() {
-        guard let alarm = alarm, let fireDate = alarm.fireDate else { return }
-        timePicker.setDate(fireDate, animated: false)
+        guard let alarm = alarm else { return }
+        
+        timePicker.setDate(alarm.fireDate, animated: false)
         nameTextField.text = alarm.name
         enableSwitch.isOn = alarm.enabled
         
@@ -43,23 +44,22 @@ extension AlarmDetailTableViewController {
 }
 
 // MARK: - Actions
-extension AlarmDetailTableViewController {
+private extension AlarmDetailTableViewController {
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        let date = timePicker.date
-        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight,
-            let name = nameTextField.text, !name.isEmpty else { return }
         
-        let timeSinceMidnight = date.timeIntervalSince(thisMorningAtMidnight)
+        let fireDate = timePicker.date
+        let enabled = enableSwitch.isOn
+        guard let name = nameTextField.text, !name.isEmpty else { return }
         
         if let alarm = alarm {
-            AlarmController.shared.update(alarm, with: name, timeSinceMidnight)
-            cancelUserNotifications(for: alarm)
-            scheduleUserNotifications(for: alarm)
+            //AlarmController.shared.update(alarm, firingAt: fireDate, withName: name)
+            let alarmDictionary: [String : Any] = [AlarmKey.name : name, AlarmKey.fireDate : fireDate, AlarmKey.enabled : enabled]
+            AlarmController.shared.update(alarm, dictionary: alarmDictionary)
+            
         } else {
-            self.alarm = AlarmController.shared.createAlarm(with: name, timeSinceMidnight)
-            if let alarm = alarm {
-                scheduleUserNotifications(for: alarm)
-            }
+            let alarmDictionary: [String : Any] = [AlarmKey.name : name, AlarmKey.fireDate : fireDate]
+            self.alarm = AlarmController.shared.create(dictionary: alarmDictionary)
+            
         }
         
         navigationController?.popViewController(animated: true)
@@ -69,13 +69,6 @@ extension AlarmDetailTableViewController {
         if let alarm = alarm {
             alarm.enabled = sender.isOn
             
-            switch alarm.enabled {
-            case true:
-                scheduleUserNotifications(for: alarm)
-            default:
-                cancelUserNotifications(for: alarm)
-                
-            }
             AlarmController.shared.toggleEnabled(for: alarm)
         }
     }
@@ -94,8 +87,10 @@ extension AlarmDetailTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == deleteCellSection {
             guard let alarm = alarm else { return }
+            
             AlarmController.shared.delete(alarm)
             cancelUserNotifications(for: alarm)
+            
             navigationController?.popViewController(animated: true)
         }
     }

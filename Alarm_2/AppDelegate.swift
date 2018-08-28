@@ -22,9 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UNUserNotificationCenter.current().delegate = self
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (accepted, error) in
-            if error != nil {
-                print("Error requesting notification authorization")
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if let error = error {
+                print("error requesting user notification:\(error)\n\(error.localizedDescription)")
+            }
+            
+            if !granted {
+                print("Notification grant denied")
             }
         }
         

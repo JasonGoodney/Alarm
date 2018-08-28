@@ -7,43 +7,8 @@
 //
 
 import Foundation
-import UserNotifications
 
-protocol AlarmScheduler {
-    func scheduleUserNotifications(for alarm: Alarm)
-    func cancelUserNotifications(for alarm: Alarm)
-}
-
-extension AlarmScheduler {
-    func scheduleUserNotifications(for alarm: Alarm) {
-        print("Scheduling alarm")
-        let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey: "⏰", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: alarm.name, arguments: nil)
-        content.sound = UNNotificationSound.default()
-        
-        
-        guard let fireDate = alarm.fireDate else { return }
-        let triggerDate = Calendar.current.dateComponents([.hour, .minute, .second], from: fireDate)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
-        let request = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
-        let center = UNUserNotificationCenter.current()
-        center.add(request) { (error) in
-            if let error = error {
-                print("Error adding notification \(error)\n\(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func cancelUserNotifications(for alarm: Alarm) {
-        print("Canceling alarm")
-        let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: [alarm.uuid])
-    }
-}
-
-class AlarmController {
+class AlarmController: AlarmScheduler {
     
     static let shared = AlarmController()
     
@@ -51,44 +16,91 @@ class AlarmController {
 
     var alarms: [Alarm] = []
     
+//    func createAlarm(firingAt fireDate: Date, withName name: String) -> Alarm {
+//        let alarm = Alarm(fireDate: fireDate, name: name)
+//        alarms.append(alarm)
+//        
+//        saveToPersistance()
+//        
+//        return alarm
+//    }
+//    
+//    func update(_ alarm: Alarm, firingAt fireDate: Date, withName name: String) {
+//        alarm.name = name
+//        alarm.fireDate = fireDate
+//        
+//        saveToPersistance()
+//    }
+//    
+//    func delete(_ alarm: Alarm) {
+//        if let index = alarms.index(of: alarm) {
+//            alarms.remove(at: index)
+//            
+//            saveToPersistance()
+//        }
+//    }
+}
+
+// MARK: - Methods
+extension AlarmController {
     func toggleEnabled(for alarm: Alarm) {
         alarm.enabled = !alarm.enabled
-    }
-    
-    func createAlarm(with name: String, _ fireTimeFromMidnight: TimeInterval) -> Alarm {
-        let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
-        alarms.append(alarm)
         
+        switch alarm.enabled {
+        case true:
+            scheduleUserNotifications(for: alarm)
+        default:
+            cancelUserNotifications(for: alarm)
+        }
+    }
+}
+
+// MARK: - CRUDable
+extension AlarmController: CRUDable {
+    typealias Item = Alarm
+    
+    func create(dictionary: [String : Any]) -> Alarm {
+        guard let name = dictionary[AlarmKey.name] as? String,
+            let fireDate = dictionary[AlarmKey.fireDate] as? Date else { return Alarm() }
+        
+        let alarm = Alarm(fireDate: fireDate, name: name)
+        alarms.append(alarm)
+        scheduleUserNotifications(for: alarm)
         saveToPersistance()
         
         return alarm
     }
     
-    func update(_ alarm: Alarm, with name: String, _ fireTimeFromMidnight: TimeInterval) {
-        alarm.name = name
-        alarm.fireTimeFromMidnight = fireTimeFromMidnight
+    func update(_ item: Alarm, dictionary: [String : Any?]) {
+        guard let name = dictionary[AlarmKey.name] as? String,
+            let fireDate = dictionary[AlarmKey.fireDate] as? Date,
+            let enabled = dictionary[AlarmKey.enabled] as? Bool else { return }
+        
+        item.name = name
+        item.fireDate = fireDate
+        item.enabled = enabled
+        
+        cancelUserNotifications(for: item)
+        scheduleUserNotifications(for: item)
         
         saveToPersistance()
     }
     
-    func delete(_ alarm: Alarm) {
-        if let index = alarms.index(of: alarm) {
+    func delete(_ item: Alarm) {
+        if let index = alarms.index(of: item) {
             alarms.remove(at: index)
             
+            cancelUserNotifications(for: item)
             saveToPersistance()
         }
     }
     
-    var mockData = [
-        Alarm(fireTimeFromMidnight: TimeInterval(), name: "Alarm"),
-        Alarm(fireTimeFromMidnight: TimeInterval(), name: "Alarm"),
-        Alarm(fireTimeFromMidnight: TimeInterval(), name: "Alarm"),
-        Alarm(fireTimeFromMidnight: TimeInterval(), name: "Alarm"),
-        
-    ]
+    
+    
     
 }
 
+// MARK: - Persistable
 extension AlarmController: Persistable {
 
     typealias LoadData = Alarm
@@ -124,8 +136,6 @@ extension AlarmController: Persistable {
         
         return []
     }
-    
-    
 }
 
 

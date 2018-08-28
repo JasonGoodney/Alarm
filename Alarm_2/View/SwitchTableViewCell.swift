@@ -14,20 +14,24 @@ protocol SwitchTableViewCellDelegate: class {
 
 class SwitchTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
     weak var delegate: SwitchTableViewCellDelegate?
-    
     static let cellId = "SwitchTableViewCell"
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var alarmSwitch: UISwitch!
-    
     var alarm: Alarm? {
         didSet {
             updateView()
         }
     }
     
+    // MARK: - Properties
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var alarmSwitch: UISwitch!
+    
+}
+
+// MARK: - Update View
+private extension SwitchTableViewCell {
     func updateView() {
         if let alarm = alarm {
             nameLabel.text = alarm.name
@@ -35,13 +39,15 @@ class SwitchTableViewCell: UITableViewCell {
             alarmSwitch.isOn = alarm.enabled
         }
     }
-    
+}
+
+// MARK: - Methods
+private extension SwitchTableViewCell {
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         print("\n switchAlarm.isOn \(sender.isOn)")
         if let delegate = delegate {
             delegate.switchCellSwitchValueChanged(cell: self)
         }
     }
-        
 }
 
