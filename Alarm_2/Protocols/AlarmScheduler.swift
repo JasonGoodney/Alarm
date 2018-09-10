@@ -28,7 +28,7 @@ extension AlarmScheduler {
         let request = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
         center.add(request) { (error) in
-            if let error = error {
+            if let error = error {  
                 print("Error adding notification \(error)\n\(error.localizedDescription)")
             }
         }
